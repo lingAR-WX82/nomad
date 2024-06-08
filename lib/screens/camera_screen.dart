@@ -66,13 +66,16 @@ class _CameraScreenState extends State<CameraScreen> {
       }
     });
 
-    var translatedText = await translationService.translate(recognizedText.text, 'en', 'es');
-
-    // translatedText
+    var translatedBlocks =
+        await Future.wait(recognizedText.blocks.map((textBlock) async {
+      var text = await translationService.translate(textBlock.text, 'en', 'es');
+      return text;
+    }));
 
     if (inputImage.metadata?.size != null &&
         inputImage.metadata?.rotation != null) {
       final painter = TextRecognizerPainter(
+        translatedBlocks,
         recognizedText,
         inputImage.metadata!.size,
         inputImage.metadata!.rotation,
