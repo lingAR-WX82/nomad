@@ -4,7 +4,7 @@ import 'package:nomad/providers/translation/detector_provider.dart';
 import 'package:nomad/providers/translation/translate_provider.dart';
 import 'package:nomad/routes.dart';
 import 'package:nomad/screens/camera_screen.dart';
-import 'package:nomad/widgets/shared/app_layout.dart';
+import 'package:nomad/shared/widgets/layout/app_layout.dart';
 
 void main() {
   runApp(const MyApp());
@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
           useMaterial3: true,
         ),
         home: const MyHomePage(title: 'Flutter Demo Home Page'),
-        initialRoute: '/camera',
+        initialRoute: '/',
         routes: routes);
   }
 }
@@ -61,10 +61,6 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   void _translateText() {
-    // detectorProvider
-    //     .detectLanguage('Hola mundo')
-    //     .then((value) => print(value));
-
     var hasSpanish = false;
     modelManager
         .isModelDownloaded(TranslateLanguage.spanish.bcpCode)
@@ -77,7 +73,7 @@ class _MyHomePageState extends State<MyHomePage> {
           .then((value) => {
                 print('Spanish model downloaded'),
                 translateProvider
-                    .translate('Hola amigos', 'es', 'en')
+                    .translate('Hola amigos como estan', 'es', 'en')
                     .then((value) => print(value))
               });
     }
@@ -88,8 +84,7 @@ class _MyHomePageState extends State<MyHomePage> {
       _selectedIndex = index;
     });
     Navigator.push(
-      context, MaterialPageRoute(builder: (context) => CameraScreen())
-    );
+        context, MaterialPageRoute(builder: (context) => const CameraScreen()));
   }
 
   @override
@@ -119,12 +114,7 @@ class _MyHomePageState extends State<MyHomePage> {
             BottomNavigationBarItem(
                 icon: Icon(Icons.settings), label: 'Settings')
           ]),
-      child: Stack(
-        children: [
-          ElevatedButton(
-              onPressed: _translateText, child: const Text('Translate'))
-        ],
-      ),
+      child: const Expanded(child: CameraScreen()),
     );
   }
 }
