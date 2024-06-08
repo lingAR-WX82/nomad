@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:google_mlkit_translation/google_mlkit_translation.dart';
+import 'package:nomad/providers/translation/detector_provider.dart';
+import 'package:nomad/providers/translation/translate_provider.dart';
 
 void main() {
   runApp(const MyApp());
@@ -55,7 +58,18 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  late DetectorProvider detectorProvider;
+  late OnDeviceTranslatorModelManager modelManager;
+  late TranslateProvider translateProvider;
   int _counter = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    detectorProvider = DetectorProvider();
+    modelManager = OnDeviceTranslatorModelManager();
+    translateProvider = TranslateProvider();
+  }
 
   void _incrementCounter() {
     setState(() {
@@ -66,6 +80,27 @@ class _MyHomePageState extends State<MyHomePage> {
       // called again, and so nothing would appear to happen.
       _counter++;
     });
+
+    // detectorProvider
+    //     .detectLanguage('Hola mundo')
+    //     .then((value) => print(value));
+
+    var hasSpanish = false;
+    modelManager
+        .isModelDownloaded(TranslateLanguage.spanish.bcpCode)
+        .then((value) => hasSpanish = value);
+
+    if (!hasSpanish) {
+      print('Downloading Spanish model');
+      modelManager
+          .downloadModel(TranslateLanguage.spanish.bcpCode)
+          .then((value) => {
+                print('Spanish model downloaded'),
+                translateProvider
+                    .translate('Hola amigos', 'es', 'en')
+                    .then((value) => print(value))
+              });
+    }
   }
 
   @override
