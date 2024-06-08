@@ -1,6 +1,6 @@
 import 'package:google_mlkit_language_id/google_mlkit_language_id.dart';
 
-class DetectorProvider {
+class LanguageDetectorService {
   Future<String> detectLanguage(String text) async {
     final languageIdentifier = LanguageIdentifier(confidenceThreshold: 0.5);
 

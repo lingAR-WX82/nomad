@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_mlkit_translation/google_mlkit_translation.dart';
-import 'package:nomad/providers/translation/detector_provider.dart';
-import 'package:nomad/providers/translation/translate_provider.dart';
+import 'package:nomad/language_recognition/services/language_detector_service.dart';
+import 'package:nomad/language_recognition/services/language_translation_service.dart';
 import 'package:nomad/routes.dart';
 import 'package:nomad/screens/camera_screen.dart';
 import 'package:nomad/shared/widgets/layout/app_layout.dart';
@@ -47,17 +47,17 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  late DetectorProvider detectorProvider;
+  late LanguageDetectorService detectorProvider;
   late OnDeviceTranslatorModelManager modelManager;
-  late TranslateProvider translateProvider;
+  late LanguageTranslationService translateProvider;
   int _selectedIndex = 0;
 
   @override
   void initState() {
     super.initState();
-    detectorProvider = DetectorProvider();
+    detectorProvider = LanguageDetectorService();
     modelManager = OnDeviceTranslatorModelManager();
-    translateProvider = TranslateProvider();
+    translateProvider = LanguageTranslationService();
   }
 
   void _translateText() {
@@ -114,7 +114,7 @@ class _MyHomePageState extends State<MyHomePage> {
             BottomNavigationBarItem(
                 icon: Icon(Icons.settings), label: 'Settings')
           ]),
-      child: const Expanded(child: CameraScreen()),
+      child: const CameraScreen(),
     );
   }
 }

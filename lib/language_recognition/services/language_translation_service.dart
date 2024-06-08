@@ -1,6 +1,6 @@
 import 'package:google_mlkit_translation/google_mlkit_translation.dart';
 
-class TranslateProvider {
+class LanguageTranslationService {
   Future<String> translate(String text, String from, String to) async {
 
     final TranslateLanguage sourceLanguage = BCP47Code.fromRawValue(from)!;

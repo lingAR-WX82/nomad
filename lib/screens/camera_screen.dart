@@ -1,10 +1,13 @@
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:google_mlkit_text_recognition/google_mlkit_text_recognition.dart';
+import 'package:google_mlkit_translation/google_mlkit_translation.dart';
 import 'package:nomad/language_recognition/widgets/camera_widget.dart';
 import 'package:nomad/language_recognition/widgets/detector_widget.dart';
 
 import '../language_recognition/painters/text_recognizer_painter.dart';
+import '../language_recognition/services/language_detector_service.dart';
+import '../language_recognition/services/language_translation_service.dart';
 import '../shared/widgets/layout/app_layout.dart';
 
 class CameraScreen extends StatefulWidget {
@@ -47,6 +50,26 @@ class _CameraScreenState extends State<CameraScreen> {
       _text = '';
     });
     final recognizedText = await _textRecognizer.processImage(inputImage);
+    final LanguageDetectorService detectorService = LanguageDetectorService();
+    final LanguageTranslationService translationService =
+        LanguageTranslationService();
+    final modelManager = OnDeviceTranslatorModelManager();
+
+    // await modelManager.deleteModel(TranslateLanguage.english.bcpCode);
+    // await modelManager.deleteModel(TranslateLanguage.spanish.bcpCode);
+
+    modelManager
+        .isModelDownloaded(TranslateLanguage.spanish.bcpCode)
+        .then((value) async {
+      if (!value) {
+        await modelManager.downloadModel(TranslateLanguage.spanish.bcpCode);
+      }
+    });
+
+    var translatedText = await translationService.translate(recognizedText.text, 'en', 'es');
+
+    // translatedText
+
     if (inputImage.metadata?.size != null &&
         inputImage.metadata?.rotation != null) {
       final painter = TextRecognizerPainter(
