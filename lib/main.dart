@@ -1,17 +1,17 @@
-import 'package:flutter/cupertino.dart';
-import 'package:nomad/routes.dart';
+import 'package:flutter/material.dart';
+
+import 'package:nomad/shared/widgets/home.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(const Application());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class Application extends StatelessWidget {
+  const Application({super.key});
 
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return CupertinoApp(
-        home: CupertinoApp.router(routerConfig: router));
+    return const MaterialApp(home: Home());
   }
 }

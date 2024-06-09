@@ -12,12 +12,12 @@ import '../../shared/util/coordinates_translator.dart';
 
 class TextRecognizerPainter extends CustomPainter {
   TextRecognizerPainter(
-      this.translatedBlocks,
-      this.recognizedText,
-      this.imageSize,
-      this.rotation,
-      this.cameraLensDirection,
-      );
+    this.translatedBlocks,
+    this.recognizedText,
+    this.imageSize,
+    this.rotation,
+    this.cameraLensDirection,
+  );
 
   final List<String> translatedBlocks;
   final RecognizedText recognizedText;
@@ -176,7 +176,7 @@ class TextRecognizerPainter extends CustomPainter {
           )),
         Offset(
             Platform.isAndroid &&
-                cameraLensDirection == CameraLensDirection.front
+                    cameraLensDirection == CameraLensDirection.front
                 ? right
                 : left,
             top),

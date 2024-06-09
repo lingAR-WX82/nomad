@@ -25,10 +25,13 @@ class DetectorWidget extends StatefulWidget {
 class _DetectorWidgetState extends State<DetectorWidget> {
   @override
   Widget build(BuildContext context) {
-    return Camera(
-      customPaint: widget.customPaint,
-      onImage: widget.onImage,
-      onCameraFeedReady: widget.onCameraFeedReady,
+    return Container(
+      constraints: const BoxConstraints.expand(),
+      child: Camera(
+        customPaint: widget.customPaint,
+        onImage: widget.onImage,
+        onCameraFeedReady: widget.onCameraFeedReady,
+      ),
     );
   }
 }

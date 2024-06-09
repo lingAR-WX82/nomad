@@ -8,7 +8,6 @@ import 'package:nomad/language_recognition/widgets/detector_widget.dart';
 import '../painters/text_recognizer_painter.dart';
 import '../services/language_detector_service.dart';
 import '../services/language_translation_service.dart';
-import '../../shared/widgets/layout/app_layout.dart';
 
 class CameraScreen extends StatefulWidget {
   const CameraScreen({super.key});
@@ -50,7 +49,7 @@ class _CameraScreenState extends State<CameraScreen> {
       _text = '';
     });
     final recognizedText = await _textRecognizer.processImage(inputImage);
-    final LanguageDetectorService detectorService = LanguageDetectorService();
+
     final LanguageTranslationService translationService =
         LanguageTranslationService();
     final modelManager = OnDeviceTranslatorModelManager();
