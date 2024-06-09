@@ -5,10 +5,10 @@ import 'package:google_mlkit_translation/google_mlkit_translation.dart';
 import 'package:nomad/language_recognition/widgets/camera_widget.dart';
 import 'package:nomad/language_recognition/widgets/detector_widget.dart';
 
-import '../language_recognition/painters/text_recognizer_painter.dart';
-import '../language_recognition/services/language_detector_service.dart';
-import '../language_recognition/services/language_translation_service.dart';
-import '../shared/widgets/layout/app_layout.dart';
+import '../painters/text_recognizer_painter.dart';
+import '../services/language_detector_service.dart';
+import '../services/language_translation_service.dart';
+import '../../shared/widgets/layout/app_layout.dart';
 
 class CameraScreen extends StatefulWidget {
   const CameraScreen({super.key});
