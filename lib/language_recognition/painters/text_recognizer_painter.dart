@@ -5,17 +5,19 @@ import 'dart:ui' as ui;
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:google_mlkit_text_recognition/google_mlkit_text_recognition.dart';
+import 'package:nomad/language_recognition/services/language_detector_service.dart';
+import 'package:nomad/language_recognition/services/language_translation_service.dart';
 
 import '../../shared/util/coordinates_translator.dart';
 
 class TextRecognizerPainter extends CustomPainter {
   TextRecognizerPainter(
-    this.translatedBlocks,
-    this.recognizedText,
-    this.imageSize,
-    this.rotation,
-    this.cameraLensDirection,
-  );
+      this.translatedBlocks,
+      this.recognizedText,
+      this.imageSize,
+      this.rotation,
+      this.cameraLensDirection,
+      );
 
   final List<String> translatedBlocks;
   final RecognizedText recognizedText;
@@ -28,7 +30,7 @@ class TextRecognizerPainter extends CustomPainter {
     final Paint paint = Paint()
       ..style = PaintingStyle.stroke
       ..strokeWidth = 3.0
-      ..color = Colors.lightGreenAccent;
+      ..color = Colors.lightBlueAccent;
 
     final Paint background = Paint()..color = const Color(0x99000000);
 
@@ -45,6 +47,12 @@ class TextRecognizerPainter extends CustomPainter {
 
       builder.addText(translatedBlocks[i]);
       builder.pop();
+
+      // 450
+
+      if (!(textBlock.boundingBox.top > 450.0 && textBlock.boundingBox.bottom < 900.0)) {
+        continue;
+      }
 
       final left = translateX(
         textBlock.boundingBox.left,
@@ -68,7 +76,6 @@ class TextRecognizerPainter extends CustomPainter {
         cameraLensDirection,
       );
 
-      print(top);
       // final bottom = translateY(
       //   textBlock.boundingBox.bottom,
       //   size,
@@ -98,8 +105,6 @@ class TextRecognizerPainter extends CustomPainter {
           rotation,
           cameraLensDirection,
         );
-
-        print(x);
 
         if (Platform.isAndroid) {
           switch (cameraLensDirection) {
@@ -178,7 +183,7 @@ class TextRecognizerPainter extends CustomPainter {
           )),
         Offset(
             Platform.isAndroid &&
-                    cameraLensDirection == CameraLensDirection.front
+                cameraLensDirection == CameraLensDirection.front
                 ? right
                 : left,
             top),
