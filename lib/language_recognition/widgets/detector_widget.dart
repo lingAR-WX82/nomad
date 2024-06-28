@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_mlkit_translation/google_mlkit_translation.dart';
+import 'package:nomad/language_recognition/painters/camera_mask_painter.dart';
 import 'package:nomad/language_recognition/widgets/camera_widget.dart';
 
 class DetectorWidget extends StatefulWidget {
@@ -25,13 +26,21 @@ class DetectorWidget extends StatefulWidget {
 class _DetectorWidgetState extends State<DetectorWidget> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      constraints: const BoxConstraints.expand(),
-      child: Camera(
-        customPaint: widget.customPaint,
-        onImage: widget.onImage,
-        onCameraFeedReady: widget.onCameraFeedReady,
-      ),
+    return Stack(
+      children: [
+        Container(
+          constraints: const BoxConstraints.expand(),
+          child: Camera(
+            customPaint: widget.customPaint,
+            onImage: widget.onImage,
+            onCameraFeedReady: widget.onCameraFeedReady,
+          ),
+        ),
+        CustomPaint(
+          painter: CameraMaskPainter(),
+          child: Container(),
+        )
+      ],
     );
   }
 }

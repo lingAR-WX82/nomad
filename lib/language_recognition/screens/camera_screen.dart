@@ -2,11 +2,9 @@ import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:google_mlkit_text_recognition/google_mlkit_text_recognition.dart';
 import 'package:google_mlkit_translation/google_mlkit_translation.dart';
-import 'package:nomad/language_recognition/widgets/camera_widget.dart';
 import 'package:nomad/language_recognition/widgets/detector_widget.dart';
 
 import '../painters/text_recognizer_painter.dart';
-import '../services/language_detector_service.dart';
 import '../services/language_translation_service.dart';
 
 class CameraScreen extends StatefulWidget {

@@ -43,7 +43,7 @@ class TextRecognizerPainter extends CustomPainter {
             textDirection: TextDirection.ltr),
       );
       builder.pushStyle(
-          ui.TextStyle(color: Colors.lightGreenAccent, background: background));
+          ui.TextStyle(color: Colors.lightBlueAccent, background: background));
 
       builder.addText(translatedBlocks[i]);
       builder.pop();
@@ -69,6 +69,8 @@ class TextRecognizerPainter extends CustomPainter {
         rotation,
         cameraLensDirection,
       );
+
+      print(top);
       // final bottom = translateY(
       //   textBlock.boundingBox.bottom,
       //   size,
@@ -98,6 +100,8 @@ class TextRecognizerPainter extends CustomPainter {
           rotation,
           cameraLensDirection,
         );
+
+        print(x);
 
         if (Platform.isAndroid) {
           switch (cameraLensDirection) {
