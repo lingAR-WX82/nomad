@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class SettingsScreen extends StatelessWidget {
-  const SettingsScreen({super.key});
+class HistorialScreen extends StatelessWidget {
+  const HistorialScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Configuraciones'),
+        title: const Text('Historial'),
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           onPressed: () {
@@ -16,7 +16,7 @@ class SettingsScreen extends StatelessWidget {
         ),
       ),
       body: const Center(
-        child: Text('Configuraciones Screen'),
+        child: Text('Historial Screen'),
       ),
     );
   }
