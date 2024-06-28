@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 
 class DashboardScreen extends StatelessWidget {
-
   const DashboardScreen({super.key});
 
   @override
@@ -42,14 +41,14 @@ class DashboardScreen extends StatelessWidget {
               leading: const Icon(FontAwesome.history),
               title: const Text('Historial'),
               onTap: () {
-                Navigator.pushNamed(context, '/historial');
+                Navigator.pushNamed(context, '/history');
               },
             ),
             ListTile(
               leading: const Icon(FontAwesome.map_marker),
               title: const Text('Ubicación'),
               onTap: () {
-                Navigator.pushNamed(context, '/ubicacion');
+                Navigator.pushNamed(context, '/location');
               },
             ),
           ],
@@ -57,6 +56,7 @@ class DashboardScreen extends StatelessWidget {
       ),
       appBar: AppBar(
         title: const Center(child: Text('Dashboard')),
+        centerTitle: true,
       ),
       body: Center(
         child: Column(
@@ -79,8 +79,9 @@ class DashboardScreen extends StatelessWidget {
                 Column(
                   children: <Widget>[
                     IconButton(
-                      iconSize: 50,
+                      iconSize: 70,
                       icon: const Icon(FontAwesome.map_marker),
+                      color: Colors.green,
                       onPressed: () {
                         // Acción del ícono de ubicación
                       },
@@ -92,8 +93,9 @@ class DashboardScreen extends StatelessWidget {
                 Column(
                   children: <Widget>[
                     IconButton(
-                      iconSize: 50,
+                      iconSize: 70,
                       icon: const Icon(FontAwesome.heart),
+                      color: Colors.red,
                       onPressed: () {
                         // Acción del ícono de favoritos
                       },
@@ -110,10 +112,11 @@ class DashboardScreen extends StatelessWidget {
                 Column(
                   children: <Widget>[
                     IconButton(
-                      iconSize: 50,
+                      iconSize: 70,
                       icon: const Icon(FontAwesome.camera),
+                      color: Colors.blue,
                       onPressed: () {
-                        // Acción del ícono de traducir
+                        Navigator.pushNamed(context, '/camera'); // Navegar a CameraScreen
                       },
                     ),
                     const Text('Translate'),
@@ -123,8 +126,9 @@ class DashboardScreen extends StatelessWidget {
                 Column(
                   children: <Widget>[
                     IconButton(
-                      iconSize: 50,
+                      iconSize: 70,
                       icon: const Icon(FontAwesome.history),
+                      color: Colors.blue,
                       onPressed: () {
                         // Acción del ícono de historial
                       },
@@ -140,4 +144,3 @@ class DashboardScreen extends StatelessWidget {
     );
   }
 }
-

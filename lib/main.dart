@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:nomad/language_recognition/screens/camera_screen.dart';
 import 'package:nomad/shared/widgets/home.dart';
 import 'profile_management/my_profile_screen.dart';
 import 'profile_management/screens/settings_screen.dart';
+import 'shared/screens/historial_screen.dart';
+import 'shared/screens/ubicacion_screen.dart';
 
 void main() {
   runApp(const Application());
@@ -22,8 +25,9 @@ class Application extends StatelessWidget {
       routes: {
         '/profile': (context) => MyProfileScreen(),
         '/settings': (context) => SettingsScreen(),
-        '/historial': (context) => HistorialScreen(),
-        '/ubicacion': (context) => UbicacionScreen(),
+        '/history': (context) => HistorialScreen(),
+        '/location': (context) => UbicacionScreen(),
+        '/camera': (context) => CameraScreen(),
       },
     );
   }

@@ -8,9 +8,15 @@ class HistorialScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Historial'),
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
       ),
       body: const Center(
-        child: Text('Esta es la pantalla de historial'),
+        child: Text('Historial Screen'),
       ),
     );
   }
